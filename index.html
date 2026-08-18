@@ -4,122 +4,1137 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ドライブに行こう！</title>
+
+  <title>LIVE SPARK | 推しのライブを見つけよう</title>
 
   <style>
-    /* 全体 */
+
+    /* =========================
+       全体
+    ========================= */
+
     * {
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      padding-bottom: 100px;
-      font-family: Arial, "Hiragino Kaku Gothic ProN", sans-serif;
-      color: #333;
-      background-color: #f5f5f5;
-    }
+      font-family:
+        "Hiragino Kaku Gothic ProN",
+        "Yu Gothic",
+        Arial,
+        sans-serif;
 
-    /* ヘッダー */
-    header {
-      background-color: #FF99CC;
       color: white;
-      text-align: center;
-      padding: 30px 20px;
+
+      background:
+        radial-gradient(
+          circle at 10% 20%,
+          #51248a 0,
+          transparent 30%
+        ),
+        radial-gradient(
+          circle at 90% 30%,
+          #a21caf 0,
+          transparent 30%
+        ),
+        #090714;
+
+      min-height: 100vh;
     }
 
-    header h1 {
+
+    /* =========================
+       ヒーロー
+    ========================= */
+
+    header {
+      position: relative;
+
+      min-height: 560px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      text-align: center;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #6d28d9,
+          #db2777,
+          #0891b2
+        );
+    }
+
+
+    header::before {
+      content: "";
+
+      position: absolute;
+
+      width: 450px;
+      height: 450px;
+
+      border-radius: 50%;
+
+      background: #ff00cc;
+
+      filter: blur(100px);
+
+      opacity: 0.45;
+
+      top: -200px;
+      left: -100px;
+    }
+
+
+    header::after {
+      content: "";
+
+      position: absolute;
+
+      width: 400px;
+      height: 400px;
+
+      border-radius: 50%;
+
+      background: #00eaff;
+
+      filter: blur(100px);
+
+      opacity: 0.4;
+
+      bottom: -180px;
+      right: -100px;
+    }
+
+
+    .hero {
+      position: relative;
+
+      z-index: 2;
+
+      padding: 40px 20px;
+    }
+
+
+    .hero-label {
+      display: inline-block;
+
+      padding: 8px 20px;
+
+      margin-bottom: 20px;
+
+      border: 1px solid rgba(255,255,255,0.5);
+
+      border-radius: 30px;
+
+      background: rgba(255,255,255,0.12);
+
+      backdrop-filter: blur(10px);
+
+      letter-spacing: 3px;
+
+      font-size: 0.8rem;
+    }
+
+
+    .hero h1 {
       margin: 0;
+
+      font-size: clamp(3.5rem, 11vw, 7rem);
+
+      line-height: 1;
+
+      letter-spacing: 8px;
+
+      font-weight: 900;
+
+      text-shadow:
+        0 0 10px white,
+        0 0 30px #ff00cc,
+        0 0 60px #ff00cc;
+    }
+
+
+    .hero h2 {
+      margin: 25px 0 15px;
+
+      font-size: clamp(1.3rem, 3vw, 2rem);
+
+      letter-spacing: 3px;
+    }
+
+
+    .hero p {
+      max-width: 650px;
+
+      margin: 0 auto 30px;
+
+      line-height: 1.8;
+
+      color: rgba(255,255,255,0.9);
+    }
+
+
+    .hero-button {
+      display: inline-block;
+
+      padding: 15px 35px;
+
+      border-radius: 50px;
+
+      background: white;
+
+      color: #8b2cff;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      box-shadow:
+        0 0 20px rgba(255,255,255,0.8),
+        0 0 40px rgba(255,0,200,0.6);
+
+      transition: 0.3s;
+    }
+
+
+    .hero-button:hover {
+      transform: scale(1.08);
+
+      box-shadow:
+        0 0 30px white,
+        0 0 60px #ff00cc;
+    }
+
+
+    /* =========================
+       ナビゲーション
+    ========================= */
+
+    nav {
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 35px;
+
+      padding: 18px;
+
+      background: rgba(9,7,20,0.85);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+
+    nav a {
+      color: white;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      font-size: 0.9rem;
+
+      transition: 0.3s;
+    }
+
+
+    nav a:hover {
+      color: #ff4dcc;
+
+      text-shadow: 0 0 10px #ff00cc;
+    }
+
+
+    /* =========================
+       メイン
+    ========================= */
+
+    main {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 80px 20px;
+    }
+
+
+    .section-title {
+      text-align: center;
+
+      margin-bottom: 45px;
+    }
+
+
+    .section-title span {
+      color: #ff4dcc;
+
+      font-size: 0.8rem;
+
+      letter-spacing: 4px;
+
+      font-weight: bold;
+    }
+
+
+    .section-title h2 {
+      margin: 10px 0;
+
+      font-size: 2.5rem;
+    }
+
+
+    .section-title p {
+      color: #aaa;
+    }
+
+
+    /* =========================
+       アーティスト一覧
+    ========================= */
+
+    .artist-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 25px;
+    }
+
+
+    .artist-card {
+      position: relative;
+
+      overflow: hidden;
+
+      border-radius: 22px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.1),
+          rgba(255,255,255,0.03)
+        );
+
+      border: 1px solid rgba(255,255,255,0.12);
+
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.35);
+
+      backdrop-filter: blur(10px);
+
+      transition: 0.4s;
+    }
+
+
+    .artist-card:hover {
+      transform:
+        translateY(-10px)
+        scale(1.02);
+
+      border-color: #ff4dcc;
+
+      box-shadow:
+        0 20px 50px rgba(255,0,180,0.3);
+    }
+
+
+    /* カードのビジュアル */
+
+    .artist-image {
+      height: 210px;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
+    .artist-image::before {
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      border-radius: 50%;
+
+      background: #ff00cc;
+
+      filter: blur(70px);
+
+      opacity: 0.55;
+    }
+    .artist-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  display: block;
+
+  position: relative;
+  z-index: 2;
+}
+    .artist-symbol {
+      position: relative;
+
+      z-index: 2;
+
+      font-size: 4.5rem;
+
+      font-weight: 900;
+
+      font-style: italic;
+
+      color: white;
+
+      text-shadow:
+        0 0 10px white,
+        0 0 25px #ff00cc,
+        0 0 50px #00eaff;
+    }
+
+
+    /* 個別カラー */
+
+    .tokisen .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #ff6fae,
+          #ff9fbc,
+          #ff5c8a
+        );
+    }
+
+
+    .ilife .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #ff3cac,
+          #784ba0,
+          #2b86c5
+        );
+    }
+
+
+    .sekai .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #312e81,
+          #0f766e
+        );
+    }
+
+
+    .fruits .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #ff758c,
+          #ff7eb3,
+          #f9d423
+        );
+    }
+
+
+    .cutie .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #ff6bcb,
+          #ff9a9e,
+          #fad0c4
+        );
+    }
+
+
+    .hana .artist-image {
+      background:
+        linear-gradient(
+          135deg,
+          #111827,
+          #be185d,
+          #7c3aed
+        );
+    }
+
+
+    /* カード本文 */
+
+    .artist-content {
+      padding: 25px;
+    }
+
+
+    .genre {
+      display: inline-block;
+
+      padding: 5px 12px;
+
+      border-radius: 20px;
+
+      background: rgba(255,76,204,0.15);
+
+      color: #ff70d6;
+
+      font-size: 0.75rem;
+
+      font-weight: bold;
+    }
+
+
+    .artist-content h3 {
+      margin: 12px 0;
+
+      font-size: 1.5rem;
+
+      letter-spacing: 1px;
+    }
+
+
+    .artist-content p {
+      color: #aaa;
+
+      line-height: 1.7;
+
+      min-height: 50px;
+    }
+
+
+    .official-button {
+      display: block;
+
+      margin-top: 20px;
+
+      padding: 13px;
+
+      text-align: center;
+
+      border-radius: 8px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ff00cc,
+          #7b2cff
+        );
+
+      color: white;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      transition: 0.3s;
+    }
+
+
+    .official-button:hover {
+      box-shadow:
+        0 0 25px rgba(255,0,200,0.7);
+    }
+
+
+    /* =========================
+       メッセージ
+    ========================= */
+
+    .message {
+      margin-top: 80px;
+
+      padding: 60px 30px;
+
+      text-align: center;
+
+      border-radius: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(255,0,204,0.2),
+          rgba(0,234,255,0.15)
+        );
+
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+
+    .message h2 {
+      margin-top: 0;
+
       font-size: 2rem;
     }
 
-    /* メイン */
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      color: #3399CC;
+
+    .message p {
+      max-width: 700px;
+
+      margin: 0 auto;
+
+      color: #ccc;
+
+      line-height: 1.9;
     }
 
-    section {
-      background-color: white;
-      margin-bottom: 25px;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    }
 
-    section h2 {
-      margin-top: 0;
-      color: #2c3e50;
-    }
+    /* =========================
+       フッター
+    ========================= */
 
-    /* フッター */
     footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #99FFFF;
-      color: #333;
+      padding: 40px 20px;
+
       text-align: center;
-      padding: 15px 20px;
+
+      background: #05030d;
+
+      border-top:
+        1px solid rgba(255,255,255,0.1);
+
+      color: #999;
     }
 
-    footer p {
-      margin: 5px 0;
+
+    footer .logo {
+      margin-bottom: 15px;
+
+      color: white;
+
+      font-size: 1.5rem;
+
+      font-weight: bold;
+
+      letter-spacing: 4px;
     }
+
 
     footer a {
-      color: #2c3e50;
-      margin: 0 8px;
+      color: #aaa;
+
       text-decoration: none;
+
+      margin: 0 10px;
+
+      transition: 0.3s;
     }
 
+
     footer a:hover {
-      text-decoration: underline;
+      color: #ff4dcc;
     }
+
+
+    footer small {
+      display: block;
+
+      margin-top: 20px;
+
+      color: #555;
+    }
+
+
+    /* =========================
+       スマホ対応
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .artist-list {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      nav {
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+
+        gap: 20px;
+      }
+
+
+      .artist-list {
+        grid-template-columns: 1fr;
+      }
+
+
+      .hero h1 {
+        letter-spacing: 4px;
+      }
+
+
+      main {
+        padding-top: 55px;
+      }
+
+    }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- ヘッダー -->
+
+  <!-- =========================
+       ヒーロー
+  ========================= -->
+
   <header>
-    <h1>ライブに行こう！</h1>
+
+    <div class="hero">
+
+      <div class="hero-label">
+        FIND YOUR NEXT LIVE ✦
+      </div>
+
+      <h1>
+        LIVE SPARK
+      </h1>
+
+      <h2>
+        次の「最高」を探しに行こう。
+      </h2>
+
+      <p>
+        アイドルも、バンドも、アーティストも。<br>
+        あなたの「推し」に会えるライブを見つけよう。
+      </p>
+
+      <a href="#artists" class="hero-button">
+        ✨ アーティストを探す
+      </a>
+
+    </div>
+
   </header>
 
-  <!-- メインコンテンツ -->
-  <main>
 
-    <section>
-      <h2>どのライブに行きますか？</h2>
+  <!-- =========================
+       ナビ
+  ========================= -->
+
+  <nav>
+
+    <a href="#">HOME</a>
+
+    <a href="#artists">ARTIST</a>
+
+    <a href="#live">LIVE</a>
+
+    <a href="#">ABOUT</a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+  ========================= -->
+
+  <main id="artists">
+
+
+    <div class="section-title">
+
+      <span>ARTIST PICKUP</span>
+
+      <h2>
+        ✨ 注目アーティスト
+      </h2>
+
       <p>
-        全国のライブ情報を発信しています。
-        あなたの行きたいアーティストのライブにご案内いたします。
+        気になるアーティストを見つけて、公式サイトで最新情報をチェック！
       </p>
+
+    </div>
+
+
+    <div class="artist-list">
+
+
+ <!-- =====================
+     超ときめき♡宣伝部
+====================== -->
+
+<article class="artist-card tokisen">
+
+  <div class="artist-image">
+
+    <img
+      src="https://toki-sen.com/s3/skiyaki/uploads/link/image/78405/tokisen_asha_top.jpg"
+      alt="超ときめき♡宣伝部"
+    >
+
+  </div>
+
+  <div class="artist-content">
+
+    <span class="genre">
+      IDOL
+    </span>
+
+    <h3>
+      超ときめき♡宣伝部
+    </h3>
+
+    <p>
+      「ときめく恋と青春」をテーマに、
+      世界中にときめきを届けるアイドルユニット。
+    </p>
+
+    <a
+      href="https://toki-sen.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="official-button"
+    >
+      最新ライブ情報を見る →
+    </a>
+
+  </div>
+
+</article>
+
+
+      <!-- =====================
+           iLiFE!
+      ====================== -->
+
+      <article class="artist-card ilife">
+
+        <div class="artist-image">
+
+  <img
+    src="https://ilife-heroines.com/files/profile/profile_20260710142402_fd7c0b1d5e15c6c9e45a8973db712fcd6a5081f2cc3a2.jpg"
+    alt="iLiFE!"
+  >
+
+</div>
+
+        <div class="artist-content">
+
+          <span class="genre">
+            IDOL
+          </span>
+
+          <h3>
+            iLiFE!
+          </h3>
+
+          <p>
+            ステージとフロアが一緒になって作り上げる、
+            熱量の高いライブが魅力のアイドルグループ。
+          </p>
+
+          <a
+            href="https://ilife-heroines.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-button"
+          >
+            最新ライブ情報を見る →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- =====================
+           SEKAI NO OWARI
+      ====================== -->
+
+      <article class="artist-card sekai">
+
+       <div class="artist-image">
+
+  <img
+    src="https://sekainoowari.jp/wp-content/uploads/2026/02/intro_middle_photo.jpg"
+    alt="SEKAI NO OWARI"
+  >
+
+</div>
+
+        <div class="artist-content">
+
+          <span class="genre">
+            BAND
+          </span>
+
+          <h3>
+            SEKAI NO OWARI
+          </h3>
+
+          <p>
+            独創的な世界観と壮大なステージ演出で
+            多くの人を魅了する人気バンド。
+          </p>
+
+          <a
+            href="https://sekainoowari.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-button"
+          >
+            最新ライブ情報を見る →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- =====================
+           FRUITS ZIPPER
+      ====================== -->
+
+      <article class="artist-card fruits">
+
+       <!-- =====================
+     FRUITS ZIPPER
+====================== -->
+
+<article class="artist-card fruits">
+
+  <div class="artist-image">
+
+    <img
+      src="https://fruitszipper.asobisystem.com/static/common/global-image/dummy.gif"
+      alt="FRUITS ZIPPER"
+    >
+
+  </div>
+
+  <div class="artist-content">
+
+    <span class="genre">
+      IDOL
+    </span>
+
+    <h3>
+      FRUITS ZIPPER
+    </h3>
+
+    <p>
+      「原宿から世界へ」を掲げ、
+      NEW KAWAIIを発信するアイドルグループ。
+    </p>
+
+    <a
+      href="https://fruitszipper.asobisystem.com/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="official-button"
+    >
+      最新ライブ情報を見る →
+    </a>
+
+  </div>
+
+</article>
+
+        <div class="artist-content">
+
+          <span class="genre">
+            IDOL
+          </span>
+
+          <h3>
+            FRUITS ZIPPER
+          </h3>
+
+          <p>
+            「原宿から世界へ」を掲げ、
+            NEW KAWAIIを発信するアイドルグループ。
+          </p>
+
+          <a
+            href="https://fruitszipper.asobisystem.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-button"
+          >
+            最新ライブ情報を見る →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- =====================
+           CUTIE STREET
+      ====================== -->
+
+      <article class="artist-card cutie">
+
+        <div class="artist-image">
+
+          <div class="artist-symbol">
+            C
+          </div>
+
+        </div>
+
+        <div class="artist-content">
+
+          <span class="genre">
+            IDOL
+          </span>
+
+          <h3>
+            CUTIE STREET
+          </h3>
+
+          <p>
+            KAWAIIカルチャーを楽しみながら、
+            個性あふれる魅力を届けるアイドルグループ。
+          </p>
+
+          <a
+            href="https://asobisystem.com/talent/cutiestreet/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-button"
+          >
+            最新ライブ情報を見る →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- =====================
+           HANA
+      ====================== -->
+
+      <article class="artist-card hana">
+
+        <div class="artist-image">
+
+          <div class="artist-symbol">
+            H
+          </div>
+
+        </div>
+
+        <div class="artist-content">
+
+          <span class="genre">
+            ARTIST
+          </span>
+
+          <h3>
+            HANA
+          </h3>
+
+          <p>
+            これからの音楽シーンを彩る、
+            注目のガールズグループ。
+          </p>
+
+          <a
+            href="https://hana.b-rave.tokyo/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="official-button"
+          >
+            最新ライブ情報を見る →
+          </a>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+
+    <!-- =========================
+         メッセージ
+    ========================= -->
+
+    <section class="message">
+
+      <h2>
+        🎫 ライブは、人生の思い出になる。
+      </h2>
+
+      <p>
+        会場に入る瞬間。<br>
+        暗転する瞬間。<br>
+        大好きなアーティストがステージに登場する瞬間。<br><br>
+
+        その瞬間を、あなたも見つけに行こう。
+      </p>
+
     </section>
 
-    <section>
-      <h2>会場までのアクセス</h2>
-      <p>
-        各会場までのアクセスをご案内いたします。
-      </p>
-      <img src="https://github.com/washizu519/raibuniikou/blob/main/cupcake.jpg?raw=true" alt="サンプル">
-    </section>
 
   </main>
 
-  <!-- フッター -->
+
+  <!-- =========================
+       フッター
+  ========================= -->
+
   <footer>
-    <p>お問い合わせ：info@example.com</p>
+
+    <div class="logo">
+      LIVE SPARK
+    </div>
 
     <p>
       <a href="#">X</a>
       <a href="#">Instagram</a>
-      <a href="#">Facebook</a>
+      <a href="#">YouTube</a>
     </p>
+
+    <small>
+      © 2026 LIVE SPARK
+    </small>
+
   </footer>
+
 
 </body>
 </html>
